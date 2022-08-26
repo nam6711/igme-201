@@ -17,22 +17,23 @@ namespace SquashTheBugs
         {
             // declare int counter
             //int i = 0 
-            //Unnecessary as the code can be done inside the for loop on line 27
+            //int i = 0;      //compile time error missing semicolon
+            double i = 0;     //logic error should be a double not an int
 
             //ADDED A LINE from line 30
-            string allNumbers = null;
+            string allNumbers = null;       //logic error the data needs to be outside the for-loop
 
             // loop through the numbers 1 through 10
             //for (i = 1; i < 10; ++i)
-            for (int i = 1; i <= 10; ++i)
+            for (i = 1; i <= 10; ++i)
             {
                 // declare string to hold all numbers
-                //string allNumbers = null;
+                //string allNumbers = null;     //logic error, the stored data will be lost if the variable is declared here
                 //moved this line to line 23
 
                 // output explanation of calculation
                 //Console.Write(i + "/" + i - 1 + " = ");
-                Console.Write($"{i}/{i - 1} = ");
+                Console.Write($"{i}/{i - 1} = ");       //compile time error the string won't read the data correctly as the syntax is flawed
 
                 // output the calculation based on the numbers
                 try
@@ -48,8 +49,7 @@ namespace SquashTheBugs
                 allNumbers += i + " ";
 
                 // increment the counter
-                //i = i + 1;
-                //Unnecessary as the for-loop already incriments and as a result you skip numbers
+                //i = i + 1     //logic error the for-loop already incriments i and as a result you skip numbers
             }
 
             // output all numbers which have been processed
