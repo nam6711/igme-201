@@ -52,7 +52,6 @@ namespace PE3_VariablesAndExponents
 
             // print final total value of all inputs
             Console.WriteLine("The value of your four inputs is:  " + nProduct);
-
         }
     }
 }
