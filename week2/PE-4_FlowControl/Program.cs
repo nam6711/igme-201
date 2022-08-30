@@ -59,6 +59,22 @@ namespace PE_4_FlowControl
 
             //Print a success message
             Console.WriteLine($"You input {var1} and {var2}! One is less than 10, and one is greater than 10!");
+
+            int num = 1;
+            switch (num)
+            {
+                case 1:
+                    Console.WriteLine("Hello");
+                    break;
+                case 2:
+                    break;
+                case 4:
+                    Console.WriteLine("There");
+                    break;
+                default:
+                    Console.WriteLine("Fren");
+                    break;
+            }
         }
     }
 }
