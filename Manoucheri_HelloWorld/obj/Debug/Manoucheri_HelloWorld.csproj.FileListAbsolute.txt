@@ -1,8 +1,0 @@
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\bin\Debug\Manoucheri_HelloWorld.exe.config
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\bin\Debug\Manoucheri_HelloWorld.exe
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\bin\Debug\Manoucheri_HelloWorld.pdb
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\obj\Debug\Manoucheri_HelloWorld.csproj.AssemblyReference.cache
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\obj\Debug\Manoucheri_HelloWorld.csproj.SuggestedBindingRedirects.cache
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\obj\Debug\Manoucheri_HelloWorld.csproj.CoreCompileInputs.cache
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\obj\Debug\Manoucheri_HelloWorld.exe
-C:\Users\manou\source\repos\nam6711\igme-201\Manoucheri_HelloWorld\obj\Debug\Manoucheri_HelloWorld.pdb
