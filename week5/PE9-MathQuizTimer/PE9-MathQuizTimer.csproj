@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{706A3720-7930-4EDB-A34E-4C79BD77A91D}</ProjectGuid>
+    <ProjectGuid>{047E6CB8-5B84-4793-B81E-7E1750DBC2FC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PE9_Functions</RootNamespace>
-    <AssemblyName>PE9-Functions</AssemblyName>
+    <RootNamespace>PE9_MathQuizTimer</RootNamespace>
+    <AssemblyName>PE9-MathQuizTimer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

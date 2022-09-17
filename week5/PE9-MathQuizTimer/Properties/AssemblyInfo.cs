@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PE9-Functions")]
+[assembly: AssemblyTitle("PE9-MathQuizTimer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PE9-Functions")]
+[assembly: AssemblyProduct("PE9-MathQuizTimer")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("706a3720-7930-4edb-a34e-4c79bd77a91d")]
+[assembly: Guid("047e6cb8-5b84-4793-b81e-7e1750dbc2fc")]
 
 // Version information for an assembly consists of the following four values:
 //
