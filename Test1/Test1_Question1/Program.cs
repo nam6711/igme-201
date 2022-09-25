@@ -32,13 +32,13 @@ namespace Test1_Question1
             int nOp = 0;
 
             // operands and solution
-            int val1 = 0;
-            int val2 = 0;
-            int nAnswer = 0;
+            double val1 = 0;
+            double val2 = 0;
+            double nAnswer = 0;
 
             // string and int for the response
             string sResponse = "";
-            Int32 nResponse = 0;
+            double nResponse = 0;
 
             // boolean for checking valid input
             bool bValid = false;
@@ -131,7 +131,7 @@ namespace Test1_Question1
             for (nCntr = 0; nCntr < nQuestions; ++nCntr)
             {
                 // generate a random number between 0 inclusive and 3 exclusive to get the operation
-                nOp = rand.Next(0, 3);
+                nOp = rand.Next(0, 4);
 
                 val1 = rand.Next(0, nMaxRange) + nMaxRange;
                 val2 = rand.Next(0, nMaxRange);
@@ -146,7 +146,8 @@ namespace Test1_Question1
 
                 // if nOp == 0, then addition
                 // if nOp == 1, then subtraction
-                // else multiplication
+                // if nOp == 2, then multiplication
+                // else division
                 if (nOp == 0)
                 {
                     nAnswer = val1 + val2;
@@ -157,10 +158,16 @@ namespace Test1_Question1
                     nAnswer = val1 - val2;
                     sQuestions = $"Question #{nCntr + 1}: {val1} - {val2} => ";
                 }
-                else
+                else if (nOp == 2)
                 {
                     nAnswer = val1 * val2;
                     sQuestions = $"Question #{nCntr + 1}: {val1} * {val2} => ";
+                } else
+                //added division
+                {
+                    nAnswer = Math.Round(val1 / val2, 2);
+                    sQuestions = $"Question #{nCntr + 1}: {val1} / {val2} => ";
+
                 }
 
                 // display the question and prompt for the answer
@@ -171,7 +178,7 @@ namespace Test1_Question1
 
                     try
                     {
-                        nResponse = int.Parse(sResponse);
+                        nResponse = double.Parse(sResponse);
                         bValid = true;
                     }
                     catch
