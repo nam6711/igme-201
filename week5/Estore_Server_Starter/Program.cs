@@ -208,7 +208,7 @@ namespace Estore_Server_Starter
             StreamReader e = new StreamReader("Directories.txt");
 
             // array to store the contents of the stream
-            string[] contents = { "" , e.ReadLine() };
+            string[] contents = { e.ReadLine() , e.ReadLine() };
 
             // close StreamReader
             e.Close();
@@ -276,7 +276,7 @@ namespace Estore_Server_Starter
             StreamReader e = new StreamReader("Directories.txt");
 
             // array to store the contents of the stream
-            string[] contents = {e.ReadLine(), ""};
+            string[] contents = {e.ReadLine(), e.ReadLine()};
 
             // close StreamReader
             e.Close();
