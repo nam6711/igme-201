@@ -8,9 +8,9 @@ namespace Vehicles
 {
     public abstract class Vehicle
     {
-        public virtual void LoadPassenger()
+        public virtual void LoadPassenger(string rider)
         {
-            // code to be implimented
+            Console.WriteLine("{0} hopped in the vehicle", rider);
         }
     }
 
@@ -21,7 +21,7 @@ namespace Vehicles
 
     public interface IPassengerCarrier
     {
-        void LoadPassenger();
+        void LoadPassenger(string rider);
     }
 
     public interface IHeaveyLoadCarrier
