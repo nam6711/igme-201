@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+// i synced up the CourseLib with PeopleLib, so now this has both libraries
 using PeopleLib;
 
 namespace PeopleApp
@@ -12,6 +13,9 @@ namespace PeopleApp
     {
         static void Main(string[] args)
         {
+            // will hold all courses
+            Courses courses = new PeopleLib.Courses();
+
             // create our People SortedList!
             People people = new People();
 
@@ -27,6 +31,7 @@ namespace PeopleApp
                 sAction = Console.ReadLine().ToLower();
 
                 string email = null;
+                string courseCode = null;
 
                 switch (sAction)
                 {
@@ -59,6 +64,24 @@ namespace PeopleApp
                         //       people.sortedList.Add(email, person);
                         // but then we would need to add the exception handling here
 
+                        // editing course codes if person is a student
+                        if (person is Student)
+                        {
+                            // parse this person into a student
+                            Student thisPerson = (Student)person;
+                            do
+                            {
+                                Console.WriteLine("Input course codes to add, or press 'ENTER' to end => ");
+                                courseCode = Console.ReadLine();
+
+                                // add course code
+                                if (courseCode.Length != 0)
+                                {
+                                    thisPerson.courseCodes.Add(courseCode);
+                                }
+                            } while (courseCode.Length != 0);
+                        }
+
                         break;
 
                     case "edit":
@@ -87,6 +110,24 @@ namespace PeopleApp
 
                             // re-add the updated person to the list
                             people[person.email] = person;
+                        }
+
+                        // editing course codes if person is a student
+                        if (person is Student)
+                        {
+                            // parse this person into a student
+                            Student thisPerson = (Student)person;
+                            do
+                            {
+                                Console.WriteLine("Input course codes to add, or press 'ENTER' to end => ");
+                                courseCode = Console.ReadLine();
+
+                                // add course code
+                                if (courseCode.Length != 0)
+                                {
+                                    thisPerson.courseCodes.Add(courseCode);
+                                }
+                            } while (courseCode.Length != 0);
                         }
                         break;
 
@@ -118,6 +159,21 @@ namespace PeopleApp
                                 // gpa only belongs to Student, so we need a Student reference variable to output that
                                 Student student = (Student)thisPerson;
                                 Console.WriteLine($"{student.gpa}");
+
+                                // output all course codes
+                                foreach(string thisCourse in student.courseCodes)
+                                {
+                                    // store days of week for each course
+                                    string days = "";
+                                    foreach(DayOfWeek day in courses.sortedList[thisCourse].schedule.daysOfWeek)
+                                    {
+                                        days += " " + day;
+                                    }
+
+                                    // print info
+                                    Console.WriteLine(courses.sortedList[thisCourse].courseCode + " " + courses.sortedList[thisCourse].description + 
+                                        days + $" {courses.sortedList[thisCourse].schedule.startTime:hh:mmtt}");
+                                }
                             }
 
                             if (thisPerson.GetType() == typeof(Teacher))

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PE12 - Q5">
+      <HintPath>..\PE12 - Q5\bin\Debug\PE12 - Q5.dll</HintPath>
+    </Reference>
     <Reference Include="PeopleLib">
       <HintPath>..\PeopleLib\bin\Debug\PeopleLib.dll</HintPath>
     </Reference>
