@@ -9,12 +9,12 @@ namespace PE14_Q3
 
     public interface IEncryptSetup
     {
-        string Encrypt(string originalVal);
+        string MakeUnreadable(string originalVal);
     }
 
     public class PigLatin : IEncryptSetup
     {
-        public string Encrypt(string originalVal)
+        public string MakeUnreadable(string originalVal)
         {
             // turn param into a array of words
             string[] words = originalVal.ToLower().Trim().Split(' ');
@@ -49,7 +49,7 @@ namespace PE14_Q3
 
     public class AddRandom : IEncryptSetup
     {
-        public string Encrypt(string originalValue)
+        public string MakeUnreadable(string originalValue)
         {
             // holds the random number generator
             Random random = new Random();
@@ -81,7 +81,7 @@ namespace PE14_Q3
     {
         public static void MyMethod(IEncryptSetup myObject)
         { 
-            Console.WriteLine(myObject.Encrypt("test of scrambler, with a half-done pig latin and fully complete word scrambler"));
+            Console.WriteLine(myObject.MakeUnreadable("test of scrambler, with a half-done pig latin and fully complete word scrambler"));
         }
 
         static void Main(string[] args)
