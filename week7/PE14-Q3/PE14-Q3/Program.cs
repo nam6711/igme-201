@@ -65,21 +65,23 @@ namespace PE14_Q3
                 // pick a NEW random letter to add to the new string
                 do
                 {
-                    randomIndex = random.Next(originalValue.Length - 1);
+                    randomIndex = random.Next(1, originalValue.Length + 1);
                 } while (indexes.Contains(randomIndex));
+                // add the new index to the array of indexes 
+                indexes[i] = randomIndex;
                 // add the randomly selected character
-                newString += originalValue.Substring(randomIndex);
+                newString += originalValue[randomIndex - 1];
             }
 
-            return originalValue;
+            return newString;
         }
     }
 
     internal class Program
     {
         public static void MyMethod(IEncryptSetup myObject)
-        {
-            myObject.Encrypt("Hello there");
+        { 
+            Console.WriteLine(myObject.Encrypt("test of scrambler, with a half-done pig latin and fully complete word scrambler"));
         }
 
         static void Main(string[] args)
