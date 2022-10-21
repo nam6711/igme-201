@@ -17,7 +17,11 @@ namespace EditPerson
             InitializeComponent();
         }
 
+<<<<<<< HEAD
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+=======
+        private void Form1_Load(object sender, EventArgs e)
+>>>>>>> 171b4532424bcb436044553bac9494baf63e9a33
         {
 
         }
