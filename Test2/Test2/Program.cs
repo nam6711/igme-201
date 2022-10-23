@@ -88,6 +88,99 @@ namespace Test2
         {
             // code to impliment
         }
+
+        public static bool operator == (Tardis doc1, Tardis doc2)
+        {
+            if (doc1.WhichDrWho == doc2.WhichDrWho)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator !=(Tardis doc1, Tardis doc2)
+        {
+            if (doc1.WhichDrWho != doc2.WhichDrWho)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator >=(Tardis doc1, Tardis doc2)
+        {
+            if (doc1.WhichDrWho == 10 || doc2.WhichDrWho == 10)
+            {
+                if (doc1.WhichDrWho == 10) { return true; }
+                else if (doc1 == doc2) { return true; }
+                else { return false; }
+            }
+            else if (doc1.WhichDrWho >= doc2.WhichDrWho)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator >(Tardis doc1, Tardis doc2)
+        {
+            if (doc1.WhichDrWho == 10 || doc2.WhichDrWho == 10)
+            {
+                if (doc1.WhichDrWho == 10) { return true; }
+                else { return false; }
+            }
+            else if (doc1.WhichDrWho > doc2.WhichDrWho)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator <=(Tardis doc1, Tardis doc2)
+        {
+            if (doc1.WhichDrWho == 10 || doc2.WhichDrWho == 10)
+            {
+                if (doc1.WhichDrWho == 10) { return false; }
+                else if (doc1 == doc2) { return true; }
+                else { return true; }
+            }
+            else if (doc1.WhichDrWho <= doc2.WhichDrWho)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool operator <(Tardis doc1, Tardis doc2)
+        {
+            if (doc1.WhichDrWho == 10 || doc2.WhichDrWho == 10)
+            {
+                if (doc1.WhichDrWho == 10) { return false; }
+                else { return true; }
+            }
+            else if (doc1.WhichDrWho < doc2.WhichDrWho)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
     public class PushButtonPhone : Phone, IPhoneInterface
