@@ -39,15 +39,15 @@ namespace Test2
         {
             // code to impliment
         }
-        
+
         public void MakeCall()
         {
-            // code to impliment
+            Console.WriteLine("You made a call using the rotary phone");
         }
-        
+
         public void HangUp()
         {
-            // code to impliment
+            Console.WriteLine("You hung up the rotary phone");
         }
 
 
@@ -86,7 +86,7 @@ namespace Test2
 
         public void TimeTravel()
         {
-            // code to impliment
+            Console.WriteLine("The Tardis time travelled");
         }
 
         public static bool operator == (Tardis doc1, Tardis doc2)
@@ -193,12 +193,12 @@ namespace Test2
 
         public void MakeCall()
         {
-            // code to impliment
+            Console.WriteLine("You made a call using the push button phone");
         }
 
         public void HangUp()
         {
-            // code to impliment
+            Console.WriteLine("You hung up the push button phone");
         }
 
 
@@ -214,7 +214,7 @@ namespace Test2
         }
     }
 
-    public class PhoneBotth : PushButtonPhone
+    public class PhoneBooth : PushButtonPhone
     {
         private bool superMan;
         public bool phoneBook;
@@ -223,12 +223,43 @@ namespace Test2
         
         public void OpenDoor()
         {
-            // code to impliment
+            Console.WriteLine("You boringly open the door (this booth isn't cool)");
         }
 
         public void CloseDoor()
         {
-            // code to impliment
+            Console.WriteLine("You boringly close the door (this booth isn't cool)");
+        }
+    }
+
+    public static class Program
+    {
+        public static void UsePhone(object obj)
+        {
+
+            if (obj is Tardis)
+            {
+                Tardis phone = (Tardis)obj;
+                phone.MakeCall();
+                phone.HangUp();
+                phone.TimeTravel();
+            } else if (obj is PhoneBooth)
+            {
+                PhoneBooth phone = (PhoneBooth)obj;
+                phone.OpenDoor();
+                phone.MakeCall();
+                phone.HangUp();
+                phone.CloseDoor();
+            }
+        }
+
+        public static void Main()
+        {
+            Tardis tardis = new Tardis();
+            PhoneBooth pBooth = new PhoneBooth();
+
+            UsePhone(tardis);
+            UsePhone(pBooth);
         }
     }
 }
