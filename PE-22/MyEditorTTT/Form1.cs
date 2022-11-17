@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Threading;
+
 namespace MyEditorTTT
 {
     public partial class Form1 : Form
@@ -32,17 +34,56 @@ namespace MyEditorTTT
             this.mSSansSerifToolStripMenuItem.Click += new EventHandler(MSSansSerifToolStripMenuItem__Click);
             this.timesNewRomanToolStripMenuItem.Click += new EventHandler(TimesNewRomanToolStripMenuItem__Click);
 
+            this.testToolStripButton.Click += new EventHandler(TestToolStripButton__Click);
+
             this.toolStrip.ItemClicked += new ToolStripItemClickedEventHandler(ToolStrip__ItemClicked);
 
             this.richTextBox.SelectionChanged += new EventHandler(RichTextBox__SelectionChanged);
 
+            this.countDownLabel.Visible = false;
+
+            this.timer.Tick += new EventHandler(Timer__Tick);
+
             this.Text = "MyEditorTTT";
         }
 
-        private void NewToolStripMenuItem__Click(object sender, EventArgs e)
+        private void TestToolStripButton__Click(object sender, EventArgs e)
         {
-            richTextBox.Clear();
-            this.Text = "MyEditorTTT";
+            // set text box to empty
+            this.richTextBox.Text = "";
+
+            this.timer.Interval = 500;
+
+            this.toolStripProgressBar.Value = 60;
+
+            this.countDownLabel.Text = "3";
+            this.countDownLabel.Visible = true;
+            this.richTextBox.Visible = false;
+
+            for (int i = 3; i > 0; --i)
+            {
+                this.countDownLabel.Text = i.ToString();
+                this.Refresh();
+                Thread.Sleep(1000);
+            }
+
+            this.countDownLabel.Visible = false;
+            this.richTextBox.Visible = true;
+
+            this.timer.Start();
+        }
+
+        private void Timer__Tick(object sender, EventArgs e)
+        {
+            --this.toolStripProgressBar.Value;
+            if (this.toolStripProgressBar.Value == 0)
+            {
+                this.timer.Stop();
+
+                string performance = "Congratulations! You typed " + Math.Round(this.richTextBox.TextLength / 30.0, 2) + " characters";
+
+                MessageBox.Show(performance);
+            }
         }
 
         private void BoldToolStripButton__Click(object sender, EventArgs e)
@@ -111,6 +152,12 @@ namespace MyEditorTTT
 
                 this.colorToolStripButton.BackColor = richTextBox.SelectionColor;
             }
+        }
+
+        private void NewToolStripMenuItem__Click(object sender, EventArgs e)
+        {
+            richTextBox.Clear();
+            this.Text = "MyEditorTTT";
         }
 
         private void OpenToolStripMenuItem__Click(object sender, EventArgs e)
