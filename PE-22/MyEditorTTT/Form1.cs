@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PE_21
+namespace MyEditorTTT
 {
     public partial class Form1 : Form
     {
@@ -36,13 +36,13 @@ namespace PE_21
 
             this.richTextBox.SelectionChanged += new EventHandler(RichTextBox__SelectionChanged);
 
-            this.Text = "MyEditor";
+            this.Text = "MyEditorTTT";
         }
 
         private void NewToolStripMenuItem__Click(object sender, EventArgs e)
         {
             richTextBox.Clear();
-            this.Text = "MyEditor";
+            this.Text = "MyEditorTTT";
         }
 
         private void BoldToolStripButton__Click(object sender, EventArgs e)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PE_21
+namespace MyEditorTTT
 {
     internal static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace PE_21
+﻿namespace MyEditorTTT
 {
     partial class Form1
     {
