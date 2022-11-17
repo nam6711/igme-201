@@ -44,14 +44,15 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.boldToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.italicsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.underlineToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.colorToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.fontToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.mSSansSerifToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timesNewRomanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.underlineToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -131,27 +132,29 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem.Text = "&Copy";
             this.copyToolStripMenuItem.ToolTipText = "Copy";
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.cutToolStripMenuItem.Text = "C&ut";
             this.cutToolStripMenuItem.ToolTipText = "Cut";
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.pasteToolStripMenuItem.Text = "&Paste";
             this.pasteToolStripMenuItem.ToolTipText = "Paste";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -201,14 +204,15 @@
             this.italicsToolStripButton.Text = "toolStripButton2";
             this.italicsToolStripButton.ToolTipText = "Italics";
             // 
-            // richTextBox
+            // underlineToolStripButton
             // 
-            this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(800, 395);
-            this.richTextBox.TabIndex = 0;
-            this.richTextBox.Text = "";
+            this.underlineToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.underlineToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("underlineToolStripButton.Image")));
+            this.underlineToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.underlineToolStripButton.Name = "underlineToolStripButton";
+            this.underlineToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.underlineToolStripButton.Text = "toolStripButton1";
+            this.underlineToolStripButton.ToolTipText = "Underline";
             // 
             // colorToolStripButton
             // 
@@ -236,16 +240,26 @@
             // mSSansSerifToolStripMenuItem
             // 
             this.mSSansSerifToolStripMenuItem.Name = "mSSansSerifToolStripMenuItem";
-            this.mSSansSerifToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mSSansSerifToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.mSSansSerifToolStripMenuItem.Text = "MS Sans Serif";
             this.mSSansSerifToolStripMenuItem.ToolTipText = "MS Sans Serif";
             // 
             // timesNewRomanToolStripMenuItem
             // 
             this.timesNewRomanToolStripMenuItem.Name = "timesNewRomanToolStripMenuItem";
-            this.timesNewRomanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.timesNewRomanToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.timesNewRomanToolStripMenuItem.Text = "Times New Roman";
             this.timesNewRomanToolStripMenuItem.ToolTipText = "Times New Roman";
+            // 
+            // richTextBox
+            // 
+            this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox.Name = "richTextBox";
+            this.richTextBox.Size = new System.Drawing.Size(800, 395);
+            this.richTextBox.TabIndex = 0;
+            this.richTextBox.Text = "";
             // 
             // openFileDialog
             // 
@@ -256,16 +270,6 @@
             // 
             this.saveFileDialog.DefaultExt = "rtf";
             this.saveFileDialog.Filter = "Rich TExt Files|*.rtf|Plain Text Files|*.txt|All Files|*.*";
-            // 
-            // underlineToolStripButton
-            // 
-            this.underlineToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.underlineToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("underlineToolStripButton.Image")));
-            this.underlineToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.underlineToolStripButton.Name = "underlineToolStripButton";
-            this.underlineToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.underlineToolStripButton.Text = "toolStripButton1";
-            this.underlineToolStripButton.ToolTipText = "Underline";
             // 
             // Form1
             // 
@@ -316,6 +320,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolStripButton underlineToolStripButton;
+        private System.Windows.Forms.ColorDialog colorDialog;
     }
 }
 

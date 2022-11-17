@@ -41,7 +41,7 @@ namespace PE_21
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 RichTextBoxStreamType richTextBoxStreamType = RichTextBoxStreamType.RichText;
-                if (openFileDialog.FileName.ToLower().Contains("*.txt"))
+                if (openFileDialog.FileName.ToLower().Contains(".txt"))
                 {
                     richTextBoxStreamType = RichTextBoxStreamType.PlainText;
                 }
@@ -108,6 +108,47 @@ namespace PE_21
                 fontStyle = FontStyle.Underline;
                 toolStripButton = this.underlineToolStripButton;
             }
+            else if (this.colorToolStripButton == e.ClickedItem)
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox.SelectionColor = colorDialog.Color;
+                    colorToolStripButton.BackColor = colorDialog.Color;
+                }
+            }
+
+            if (fontStyle != FontStyle.Regular)
+            {
+                toolStripButton.Checked = !toolStripButton.Checked;
+
+                SetSelectionFont(fontStyle, toolStripButton.Checked);
+            }
+        }
+
+        private void SetSelectionFont(FontStyle fontStyle, bool bSet)
+        {
+            Font newFont = null;
+            Font selectionFont = null;
+
+            selectionFont = richTextBox.SelectionFont;
+            if (selectionFont == null)
+            {
+                selectionFont = richTextBox.Font;
+            }
+
+            if (bSet)
+            {
+                newFont = new Font(selectionFont, selectionFont.Style | fontStyle);
+            }
+            else
+            {
+                // Underline = 4, Bold = 1, Italic = 2
+                // 111
+                // 100
+                newFont = new Font(selectionFont, selectionFont.Style & ~fontStyle);
+            }
+
+            this.richTextBox.SelectionFont = newFont;
         }
     }
 }
