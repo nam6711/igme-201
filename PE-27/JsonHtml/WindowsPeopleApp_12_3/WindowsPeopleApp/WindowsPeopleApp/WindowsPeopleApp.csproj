@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBE7D67E-6793-40E8-9730-7CD0639F4C59}</ProjectGuid>
+    <ProjectGuid>{2EE4C633-1463-4C98-AF2F-9ADDACD8DE7F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>JsonHtml</RootNamespace>
-    <AssemblyName>JsonHtml</AssemblyName>
+    <RootNamespace>WindowsPeopleApp</RootNamespace>
+    <AssemblyName>WindowsPeopleApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,14 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="PeopleAppGlobals, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PeopleAppGlobals\bin\Debug\PeopleAppGlobals.dll</HintPath>
     </Reference>
-    <Reference Include="PeopleAppGlobals">
-      <HintPath>..\WindowsPeopleApp_12_3\WindowsPeopleApp\PeopleAppGlobals\bin\Debug\PeopleAppGlobals.dll</HintPath>
-    </Reference>
-    <Reference Include="PeopleLib">
-      <HintPath>..\WindowsPeopleApp_12_3\WindowsPeopleApp\PeopleLib\bin\Debug\PeopleLib.dll</HintPath>
+    <Reference Include="PeopleList, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PeopleList\bin\Debug\PeopleList.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,7 +71,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
