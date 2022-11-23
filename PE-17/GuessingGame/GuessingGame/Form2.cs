@@ -70,7 +70,7 @@ namespace GuessingGame
                 // check if the guess is higher or lower than the actual number
                 if (guess == this.correctNum)
                 {
-                    MessageBox.Show($"Way to go! You got the correct number in {this.numGuesses}!");
+                    MessageBox.Show($"Way to go! You got the correct number in {this.numGuesses} guesses!");
                     this.Close();
                 }
                 else if (guess > this.correctNum)
