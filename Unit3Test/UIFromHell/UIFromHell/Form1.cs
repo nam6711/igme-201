@@ -41,6 +41,8 @@ namespace UIFromHell
         public List<Control> controlList = new List<Control>();
         // holds all controls being moved currently
         public List<Control> moveList = new List<Control>();
+        // holds how many controls have been made
+        public int controlsMade = 0;
 
         // Constructor: FormDesigner
         // Author: Nat/Noah Manoucheri
@@ -89,8 +91,7 @@ namespace UIFromHell
 
         // Method: FormDesignerGroupBox__Click
         // Author: Nat/Noah Manoucheri
-        // Purpose: This will be used to either create a new form control,
-        //          or move controls into new places dependent on the editMode variable's state
+        // Purpose: This will be used to either create a new form control
         // Parameters: object sender - the item that was interacted with
         //             EventArgs e - background info about the event
         // Returns: None
@@ -113,20 +114,6 @@ namespace UIFromHell
                 case "TEXT":
                     // create a new text box at the current x, y position
                     CreateTextBox(this.mouseX, this.mouseY);
-                    break;
-                case "move":
-                    // iterate through all items in the move list, and place them down
-                    foreach (Control control in moveList)
-                    {
-                        try
-                        {
-                            // remove from list
-                            moveList.Remove(control);
-                        }
-                        catch
-                        {
-                        }
-                    }
                     break;
                 default:
                     break;
@@ -162,9 +149,13 @@ namespace UIFromHell
         // Restrictions: None
         private void CreateRadio(int x, int y)
         {
+            // incriment counter
+            controlsMade++;
+
             // create a radio button at the given x and y place
             RadioButton radio = new RadioButton();
             radio.Location = new Point(x, y);
+            radio.Name = controlsMade.ToString();
             radio.Text = "NEW RADIO BUTTON THIS TAKES UP VERY LITTLE SPACE";
             radio.Size = new Size(300, 100);
             radio.BackColor = Color.FromArgb(0, 0, 0, 0);
@@ -186,9 +177,13 @@ namespace UIFromHell
         // Restrictions: None
         private void CreateLabel(int x, int y)
         {
+            // incriment counter
+            controlsMade++;
+
             // create a radio button at the given x and y place
             Label label = new Label();
             label.Location = new Point(x, y);
+            label.Name = controlsMade.ToString();
             label.Text = "NEW LABEL THIS TAKES UP VERY LITTLE SPACE";
             label.Size = new Size(300, 100);
             label.BackColor = Color.FromArgb(0, 0, 0, 0);
@@ -210,9 +205,13 @@ namespace UIFromHell
         // Restrictions: None
         private void CreateTextBox(int x, int y)
         {
+            // incriment counter
+            controlsMade++;
+
             // create a radio button at the given x and y place
             TextBox tb = new TextBox();
             tb.Location = new Point(x, y);
+            tb.Name = controlsMade.ToString();
             tb.Text = "NEW TEXTBOX THIS TAKES UP VERY LITTLE SPACE";
             tb.Size = new Size(300, 100);
             // set delegate methods for onclick that is specific to these items
@@ -239,12 +238,13 @@ namespace UIFromHell
             // if the current state is "move", set the item into the move list
             if (this.editMode == "move")
             {
-                try
+                if (moveList.Contains(control))
+                {
+                    this.moveList.Remove(control);
+                }
+                else
                 {
                     this.moveList.Add(control);
-                }
-                catch
-                {
                 }
             }
             // else if state is equal to "delete", remove it from the control list
