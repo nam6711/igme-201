@@ -79,8 +79,9 @@
             this.Controls.Add(this.clearFormButton);
             this.Controls.Add(this.exitFormButton);
             this.Controls.Add(this.formDesignerGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormDesigner";
-            this.Text = "Form1";
+            this.Text = "Custom Form Designer From Hell";
             this.ResumeLayout(false);
 
         }
