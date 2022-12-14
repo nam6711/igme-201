@@ -8,18 +8,18 @@ namespace MyQueue
 {
     public class MyQueue
     {
-        public List<int> myStack = new List<int>();
+        public List<int> myQueue = new List<int>();
 
-        public void Push(int n)
+        public void Enqueue(int n)
         {
-            myStack.Add(n);
+            myQueue.Insert(0, n);
         }
 
         public int? Peek()
         {
-            if (myStack.Count > 0)
+            if (myQueue.Count > 0)
             {
-                return myStack[myStack.Count - 1];
+                return myQueue[0];
             }
             else
             {
@@ -27,13 +27,13 @@ namespace MyQueue
             }
         }
 
-        public int? Pop()
+        public int? Dequeue()
         {
-            if (myStack.Count > 0)
+            if (myQueue.Count > 0)
             {
-                int? n = myStack[myStack.Count - 1];
-                myStack.RemoveAt(myStack.Count - 1);
-                return n;
+                int? r = myQueue[0];
+                myQueue.RemoveAt(0);
+                return r;
             }
             else
             {
