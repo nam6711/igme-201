@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DijkstrasColors
 {
-    enum EColor
+    public enum EColor
     {
         red,
         blue,
@@ -18,8 +18,58 @@ namespace DijkstrasColors
         green
     }
 
+    public class Node : IComparable<Node>
+    {
+        // data
+        public EColor nState;
+
+        // list of edges
+        public List<Edge> edges = new List<Edge>();
+
+        public int minCostToStart;
+        public Node nearestToStart;
+        public bool visited;
+
+        public Node(int nState)
+        {
+            this.nState = (EColor)nState;
+            this.minCostToStart = int.MaxValue;
+        }
+
+        public void AddEdge(int cost, Node connection)
+        {
+            Edge e = new Edge(cost, connection);
+            edges.Add(e);
+        }
+
+        public int CompareTo(Node n)
+        {
+            return this.minCostToStart.CompareTo(n.minCostToStart);
+        }
+    }
+
+    public class Edge : IComparable<Edge>
+    {
+        public int cost;
+        public Node connectedNode;
+
+        public Edge(int cost, Node connectedNode)
+        {
+            this.cost = cost;
+            this.connectedNode = connectedNode;
+        }
+
+        public int CompareTo(Edge e)
+        {
+            return this.cost.CompareTo(e.cost);
+        }
+    }
+
     internal class Program
     {
+
+        static List<Node> colorNodes = new List<Node>();
+
         // graph of all connected colors. if a color does not have an edge with another
         //      it is denoted with -1. All other have real numbers
         static int[,] colorMGraph = new[,]
@@ -61,66 +111,146 @@ namespace DijkstrasColors
             /* green */ null
         };
 
-        // Method : DepthFirstSearch
-        // Author : David Schuh,
-        //              adapted into EColor format by Nat Manoucheri
-        // Purpose : Calls the utility method for the Depth First Search
-        //              on initialization with the given start color
-        // Parameters : EColor color - represents the start root for the DFS
-        // Returns : void
-        static void DepthFirstSearch(EColor eColor)
-        {
-            // array of all nodes on the graph we've covered already
-            bool[] visited = new bool[colorAGraph.Length];
+        /****************************************************************************************
+        The Dijkstra algorithm was discovered in 1959 by Edsger Dijkstra.
+        This is how it works:
+        
+        1. From the start node, add all connected nodes to a priority queue.
+        2. Sort the priority queue by lowest cost and make the first node the current node.
+           For every child node, select the shortest path to start.
+           When all edges have been investigated from a node, that node is "Visited" 
+           and you don´t need to go there again.
+        3. Add each child node connected to the current node to the priority queue.
+        4. Go to step 2 until the queue is empty.
+        5. Recursively create a list of each node that defines the shortest path 
+           from end to start.
+        6. Reverse the list and you have found the shortest path
+        
+        In other words, recursively for every child of a node, measure its distance to the start. 
+        Store the distance and what node led to the shortest path to start. When you reach the end 
+        node, recursively go back to the start the shortest way, reverse that list and you have the 
+        shortest path.
+        ******************************************************************************************/
 
-            // send in the state of the enum EColors we are on 
-            //   and/or currently searching as well as the array of visitied
-            //   points
-            DepthFirstSearchUtility(eColor, visited);
+        static public List<Node> GetShortestPathDijkstra()
+        {
+            DijkstraSearch();
+            List<Node> shortestPath = new List<Node>();
+            shortestPath.Add(colorNodes[7]);
+            BuildShortestPath(shortestPath, colorNodes[7]);
+            shortestPath.Reverse();
+            return (shortestPath);
         }
 
-        // Method : DepthFirstSearchUtility
-        // Author : David Schuh,
-        //              adapted into EColor format by Nat Manoucheri
-        // Purpose : Runs through an adjacency matrix so we can view all
-        //              adjacent edges stemming from the given root
-        // Parameters : EColor v - represents the current node on the tree we
-        //                  are on and intend to traverse
-        //              bool[] visited - holds which nodes we've already visited into
-        //                   an array of colorAGraph.Length
-        // Returns : void
-        static void DepthFirstSearchUtility(EColor v, bool[] visited)
+        static private void BuildShortestPath(List<Node> list, Node node)
         {
-            // set the current color to having been visited so we don't
-            //      traverse it again on another node
-            visited[(int)v] = true;
-
-            // Output the node we are on so we can view the path of the app
-            Console.WriteLine(v.ToString());
-
-            // set the current color to traverse to the graph position of the associated
-            //      color
-            int[] currentColorList = colorAGraph[(int)v];
-            if (currentColorList != null)
+            if (node.nearestToStart == null)
             {
-                // Run through all the adjacent nodes to this current one, and view
-                //      if we've visited each.
-                foreach (int n in currentColorList)
+                return;
+            }
+
+            list.Add(node.nearestToStart);
+            BuildShortestPath(list, node.nearestToStart);
+        }
+
+
+        static private int NodeOrderBy(Node n)
+        {
+            return n.minCostToStart;
+        }
+
+        static private void DijkstraSearch()
+        {
+            Node start = colorNodes[0];
+
+            start.minCostToStart = 0;
+            List<Node> prioQueue = new List<Node>();
+            prioQueue.Add(start);
+
+            //Func<Node, int> nodeOrderBy = new Func<Node, int>(NodeOrderBy);
+            Func<Node, int> nodeOrderBy = NodeOrderBy;
+
+            do
+            {
+                // sort our prioQueue by minCostToStart
+                // option #1, use .Sort() which sorts in place
+                prioQueue.Sort();
+
+                // option #2, use .OrderBy() with a delegate method or lambda expression 
+                // the next 6 lines are equivalent from descriptive to abbreviated:
+                prioQueue = prioQueue.OrderBy(nodeOrderBy).ToList();
+                prioQueue = prioQueue.OrderBy(delegate (Node n) { return n.minCostToStart; }).ToList();
+                prioQueue = prioQueue.OrderBy((Node n) => { return n.minCostToStart; }).ToList();
+                prioQueue = prioQueue.OrderBy((n) => { return n.minCostToStart; }).ToList();
+                prioQueue = prioQueue.OrderBy((n) => n.minCostToStart).ToList();
+                prioQueue = prioQueue.OrderBy(n => n.minCostToStart).ToList();
+
+                Node node = prioQueue.First();
+                prioQueue.Remove(node);
+                foreach (Edge cnn in //node.edges)
+                         node.edges.OrderBy(delegate (Edge n) { return n.cost; }))
                 {
-                    // if we haven't visited this next node yet, 
-                    //      then run the Utility again and visit all of its nodes too
-                    if (!visited[n])
+                    Node childNode = cnn.connectedNode;
+                    if (childNode.visited)
                     {
-                        DepthFirstSearchUtility((EColor)n, visited);
+                        continue;
+                    }
+
+                    if (childNode.minCostToStart == int.MaxValue ||
+                        node.minCostToStart + cnn.cost < childNode.minCostToStart)
+                    {
+                        childNode.minCostToStart = node.minCostToStart + cnn.cost;
+                        childNode.nearestToStart = node;
+                        if (!prioQueue.Contains(childNode))
+                        {
+                            prioQueue.Add(childNode);
+                        }
                     }
                 }
-            }
+
+                node.visited = true;
+
+                // if we reeached our target
+                if (node == colorNodes[7])
+                {
+                    return;
+                }
+            } while (prioQueue.Any());
         }
+
 
         static void Main(string[] args)
         {
-            // Perform a DFS Search of the color red
-            DepthFirstSearch(EColor.red);
+            // Dijkstra's shortest path
+            Node node;
+
+            for (int i = 0; i < colorAGraph.Length; i++)
+            {
+                node = new Node(i);
+                colorNodes.Add(node);
+            }
+
+            // add edges 
+            for (int i = 0; i < colorNodes.Count; i++)
+            {
+                // if the current array in colorAGraph != null, add edges to it
+                if (colorAGraph[i] != null)
+                {
+                    // iterate through this color's adjacencies, and add their
+                    //      weights to the current Node
+                    for (int j = 0; j < colorAGraph[i].Length; j++)
+                    {
+                        colorNodes[i].AddEdge(colorWGraph[i][j], colorNodes[colorAGraph[i][j]]);
+                    }
+                }
+            }
+
+            Console.WriteLine("******* DIJKSTRAS *******");
+            List<Node> path = GetShortestPathDijkstra();
+            foreach (Node n in path)
+            {
+                Console.WriteLine(n.nState.ToString());
+            }
         }
     }
 }
